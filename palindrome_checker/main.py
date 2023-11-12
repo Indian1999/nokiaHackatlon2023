@@ -20,7 +20,7 @@ def isPalindrome(str):
             return ("NO", -1)
     return ("YES", NoUniqueChars)
     
-with open('./palindrome_checker/input.txt', 'r') as f:
+with open('./input.txt', 'r') as f:
     line = f.readline()
     while line:
         result = isPalindrome(line)
