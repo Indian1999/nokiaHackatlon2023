@@ -57,6 +57,59 @@ for matrix in input:
 operations = input[-1].split("\n") #['A + B', 'B + B + A', 'C + D + D + C', 'E * F + I * J']
 operations.pop()
 
+#E * F + I * J      i = 1
+#temp1 + I * J      i = 1
+#temp1 + I * J      i = 3
+#temp1 + temp3      i = 2
+
+for operation in operations:
+    operationSplit = operation.split()
+    i = 0
+    while i < len(operationSplit):
+        if operationSplit[i] == "*":
+            mtxDict["temp" + str(i)] = mtxDict[operationSplit[i-1]] * mtxDict[operationSplit[i+1]]
+            operationSplit[i] = "temp" + str(i)
+            operationSplit.pop(i+1)
+            operationSplit.pop(i-1)
+            i -= 1
+        i += 1
+    while i < len(operationSplit):
+        if operationSplit[i] == "+":
+            mtxDict["temp" + str(i)] = mtxDict[operationSplit[i-1]] + mtxDict[operationSplit[i+1]]
+            operationSplit[i] = "temp" + str(i)
+            operationSplit.pop(i+1)
+            operationSplit.pop(i-1)
+            i -= 1
+        i += 1
+    print(operation)
+    print(mtxDict[operationSplit[0]])
+    print()
+    
+"""
+newOperationList = []
+for operation in operations:
+    operationSplit = operation.split()
+    i = 0
+    while i < len(operationSplit):
+        if operationSplit[i] == "*":
+            mtxDict["mtx" + str(i)] = mtxDict[operationSplit[i-1]] * mtxDict[operationSplit[i+1]]
+            
+#E * F + I * J    i = 1
+#temp + I * J     i = 1
+#temp + I * J     i = 3
+#temp + temp ááááá
+for operation in operations:
+    operationSplit = operation.split()
+    i = 0
+    while i < len(operationSplit):
+        while operationSplit[i] == "*":
+            mtxDict["temp"] = mtxDict[operationSplit[i-1]] * mtxDict[operationSplit[i+1]]
+            operationSplit[i] = "temp"
+            operationSplit.pop(i+1)
+            operationSplit.pop(i-1)
+        i += 1
+"""
+"""
 for operation in operations:
     operationSplit = operation.split()
     operands = []
@@ -77,7 +130,7 @@ for operation in operations:
     print(operation)
     print(mtxDict["temp"])
     print()
-
+"""
 
 """
 for key in mtxDict.keys():
