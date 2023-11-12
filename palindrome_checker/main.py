@@ -24,5 +24,5 @@ with open('./palindrome_checker/input.txt', 'r') as f:
     line = f.readline()
     while line:
         result = isPalindrome(line)
-        print(result[0], result[1])
+        print(f"{result[0]}, {result[1]}")
         line = f.readline()
