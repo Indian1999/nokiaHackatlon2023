@@ -54,7 +54,7 @@ def WRONGgenerateDeckWRONG(s):
     print()
 
         
-with open('./dobble_generator/input.txt', 'r') as f:
+with open('./input.txt', 'r') as f:
     input = f.readline()
     while input:
         try:
