@@ -24,6 +24,6 @@ def isPalindrome(str):
 with open('./input.txt', 'r') as f:
     line = f.readline()
     while line:
-        isPalindrome, uniqueChars  = isPalindrome(line)
-        print(f"{isPalindrome}, {uniqueChars}")
+        result = isPalindrome(line)
+        print(f"{result[0]}, {result[1]}")
         line = f.readline()
