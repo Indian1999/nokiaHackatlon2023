@@ -76,7 +76,7 @@ def solveMaze(mazeInput):
     print(path)
     print()
     
-with open('./maze_solver/input.txt', 'r') as f:
+with open('./input.txt', 'r') as f:
     input = f.read().split("\n\n")
 for item in input:
     solveMaze(item)
