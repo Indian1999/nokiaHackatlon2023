@@ -1,4 +1,20 @@
 def generateDeck(s):
+    deck = []
+    for i in range(s):  
+        deck.append([1]) # s kártyához hozzáadunk egy 1-est
+        for j in range(s-1):
+            deck[i].append((j+1)+(i*(s-1))+1) #1-el kezdődőekhez növekvő sorrendben a maradék számot
+    for i in range(0, s-1): # i = 0, 1, 2
+        for j in range(0, s-1): # j = 0, 1, 2
+            deck.append([i + 2]) # s-1 kártyához hozzáadjuk i-t, (2-től s-ig)
+            for k in range(0, s-1):
+                deck[-1].append(s + (s-1)*k + (i*k+j) % (s-1) + 1)
+    i = 0
+    for card in deck:
+        i+=1
+        print(str(i) + " - " + str(card))
+def WRONGgenerateDeckWRONG(s):
+    #with s = 5, cards 2 and 9 do not have a common element
     k = s*s - s + 1
     finiteProjectionPlane = [[[] for i in range(s-1)] for j in range(s-1)]
     #Filling the rows:
@@ -33,7 +49,7 @@ def generateDeck(s):
     for i in range(len(vanishingPoints)):
         print(str(i+1+(s-1)**2) + " - " + str(vanishingPoints[i]))
     print()
-    
+
         
 with open('./input.txt', 'r') as f:
     input = f.readline()
