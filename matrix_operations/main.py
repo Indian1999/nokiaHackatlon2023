@@ -54,13 +54,8 @@ for matrix in input:
     for i in range(1, len(rows)):
         mtx.append([int(x) for x in rows[i].split()])
     mtxDict[rows[0]] = Matrix(mtx)
-operations = input[-1].split("\n") #['A + B', 'B + B + A', 'C + D + D + C', 'E * F + I * J']
-operations.pop()
-
-#E * F + I * J      i = 1
-#temp1 + I * J      i = 1
-#temp1 + I * J      i = 3
-#temp1 + temp3      i = 2
+operations = input[-1].split("\n")
+operations.pop()  #['A + B', 'B + B + A', 'C + D + D + C', 'E * F + I * J']
 
 for operation in operations:
     operationSplit = operation.split()
@@ -85,69 +80,3 @@ for operation in operations:
     print(operation)
     print(mtxDict[operationSplit[0]])
     print()
-    
-"""
-newOperationList = []
-for operation in operations:
-    operationSplit = operation.split()
-    i = 0
-    while i < len(operationSplit):
-        if operationSplit[i] == "*":
-            mtxDict["mtx" + str(i)] = mtxDict[operationSplit[i-1]] * mtxDict[operationSplit[i+1]]
-            
-#E * F + I * J    i = 1
-#temp + I * J     i = 1
-#temp + I * J     i = 3
-#temp + temp ááááá
-for operation in operations:
-    operationSplit = operation.split()
-    i = 0
-    while i < len(operationSplit):
-        while operationSplit[i] == "*":
-            mtxDict["temp"] = mtxDict[operationSplit[i-1]] * mtxDict[operationSplit[i+1]]
-            operationSplit[i] = "temp"
-            operationSplit.pop(i+1)
-            operationSplit.pop(i-1)
-        i += 1
-"""
-"""
-for operation in operations:
-    operationSplit = operation.split()
-    operands = []
-    operators = []
-    for item in operationSplit:
-        if item == "+" or item == "*":
-            operators.append(item)
-        else:
-            operands.append(item)
-    for operator in operators:
-        if operator == "+":
-            mtxDict["temp"] = mtxDict[operands[0]] + mtxDict[operands[1]]
-            operands[1] = "temp"
-        else:
-            mtxDict["temp"] = mtxDict[operands[0]] * mtxDict[operands[1]]
-            operands[1] = "temp"
-        operands.pop(0)
-    print(operation)
-    print(mtxDict["temp"])
-    print()
-"""
-
-"""
-for key in mtxDict.keys():
-    print(key)
-    print(mtxDict[key])
-    print()
-
-myMatrix = Matrix([[1,2,3],[3,2,4],[1,2,1]])
-myMatrix2 = Matrix([[0,5,2],[2,3,1],[3,2,4]])
-print(myMatrix)
-print()
-print(myMatrix2)
-print()
-print(myMatrix + myMatrix2)
-print()
-myMatrix = Matrix([[2,3,1],[4,5,6]])
-myMatrix2 = Matrix([[1,2], [1,1], [2,3]])
-print(myMatrix * myMatrix2)
-"""
