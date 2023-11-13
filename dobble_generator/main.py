@@ -10,10 +10,12 @@ def generateDeck(s):
             for k in range(0, s-1):
                 deck[-1].append(s + (s-1)*k + ((i-2)*k+j) % (s-1) + 1)
                 #shiftelgetünk jobbra 
+    print(s)
     i = 0
     while i < len(deck):
         print(str(i+1) + " - " + str(deck[i]))
         i += 1
+    print()
 def WRONGgenerateDeckWRONG(s):
     #with s = 5, cards 2 and 9 do not have a common element
     k = s*s - s + 1
@@ -52,7 +54,7 @@ def WRONGgenerateDeckWRONG(s):
     print()
 
         
-with open('./input.txt', 'r') as f:
+with open('./dobble_generator/input.txt', 'r') as f:
     input = f.readline()
     while input:
         try:
