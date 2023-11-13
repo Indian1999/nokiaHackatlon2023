@@ -73,6 +73,7 @@ for operation in operations:
             operationSplit.pop(i-1)
             i -= 1
         i += 1
+    i = 0
     while i < len(operationSplit):
         if operationSplit[i] == "+":
             mtxDict["temp" + str(i)] = mtxDict[operationSplit[i-1]] + mtxDict[operationSplit[i+1]]
