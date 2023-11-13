@@ -14,11 +14,11 @@ def getNumberOfUniqueChars(str):
         
 def isPalindrome(str):
     str = remvoveSpecialChars(str)
-    NoUniqueChars = getNumberOfUniqueChars(str)
+    noUniqueChars = getNumberOfUniqueChars(str)
     for i in range(0, len(str) // 2):
         if str[i].lower() != str[-i-1].lower():
             return ("NO", -1)
-    return ("YES", NoUniqueChars)
+    return ("YES", noUniqueChars)
     
 with open('./input.txt', 'r') as f:
     line = f.readline()

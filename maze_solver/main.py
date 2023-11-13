@@ -1,6 +1,33 @@
-with open('./input.txt', 'r') as f:
-    input = f.read().split("\n\n")
-for item in input:
+def pathToOutput(path):
+    output = "S "
+    i = len(path) - 1
+    while i >= 0:
+        output += path[i] + " "
+        i -= 1
+    output += "G"
+    return output  
+
+def createPath(mappedMaze, endPoint):
+    row, col = endPoint
+    length = mappedMaze[row][col]
+    path = ""
+    while length != 0: 
+        if row + 1 < len(mappedMaze) and mappedMaze[row + 1][col] == length - 1:
+            row = row + 1
+            path += "U"
+        if row - 1 >= 0 and mappedMaze[row - 1][col] == length - 1:
+            row = row - 1
+            path += "D"
+        if col + 1 < len(mappedMaze[row]) and mappedMaze[row][col + 1] == length - 1:
+            col = col + 1
+            path += "L"
+        if col - 1 >= 0 and mappedMaze[row][col - 1] == length - 1:
+            col = col - 1
+            path += "R"
+        length = length - 1
+    return pathToOutput(path)
+
+def solveMaze(mazeInput):
     rows = item.split("\n")
     if rows[-1] == "":
         rows.pop()
@@ -26,7 +53,6 @@ for item in input:
     m = len(maze[0])
     que = [(startingPoint[0], startingPoint[1], 0)]
     visited = [startingPoint]
-    result = -1
     while len(que) != 0:
         row, col, length = que.pop(0)
         if not (row < 0 or col < 0 or row >= n or col >= m or maze[row][col] == -1):
@@ -45,30 +71,13 @@ for item in input:
             if (row, col - 1) not in visited and col - 1 >= 0 and maze[row][col - 1] != -1:
                 que.append((row, col - 1, length + 1))
                 visited.append((row, col - 1))
-    row, col = endPoint
-    length = maze[row][col]
-    path = ""
-    while length != 0: 
-        if row + 1 < n and maze[row + 1][col] == length - 1:
-            row = row + 1
-            path += "U"
-        if row - 1 >= 0 and maze[row - 1][col] == length - 1:
-            row = row - 1
-            path += "D"
-        if col + 1 < m and maze[row][col + 1] == length - 1:
-            col = col + 1
-            path += "L"
-        if col - 1 >= 0 and maze[row][col - 1] == length - 1:
-            col = col - 1
-            path += "R"
-        length = length - 1
-    output = "S "
-    i = len(path) - 1
-    while i >= 0:
-        output += path[i] + " "
-        i -= 1
-    output += "G"      
+    path = createPath(maze, endPoint)
     print(rows[0])
-    print(output)
+    print(path)
     print()
+    
+with open('./maze_solver/input.txt', 'r') as f:
+    input = f.read().split("\n\n")
+for item in input:
+    solveMaze(item)
             
